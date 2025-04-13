@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+    <div class="d-flex justify-content-center align-item-center">
+        <h1 class="bg-primary text-center">Bookmarker</h1>
+    </div>
+
+    <h2>book mark your favorite site</h2>
+    <div class="container">
+        <div class="form-group" >
+            <label> site name</label>
+            <input id="site_name" class="form-control" type="text"/>
+        </div> 
+        <div class="form-group" >
+            <label> site url</label>
+            <input id="site_url" class="form-control" type="text"/>
+        </div> 
+        <button onclick="submit()" class="btn btn-danger">submit</button>   
+   
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Index</th>
+                <th scope="col">Web site name</th>
+                <th scope="col">Visit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+   
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

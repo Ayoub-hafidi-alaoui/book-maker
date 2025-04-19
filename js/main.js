@@ -2,8 +2,19 @@ var site_name = document.getElementById("site_name")
 var site_url = document.getElementById("site_url")
 var table_body = document.getElementById("tbody")
 var buttonSubmit = document.getElementById("buttonSubmit")
+var deleteIcon = document.getElementById("deleteIcon")
 
-var web_sites = []
+var web_sites;
+
+if(localStorage.getItem("websites") != null) {
+    web_sites = JSON.parse(localStorage.getItem("websites"))
+}
+else {
+    web_sites = []
+}
+
+console.log(web_sites)
+display(web_sites)
 
 
 function submit() {
@@ -16,6 +27,7 @@ function submit() {
         }
     
         web_sites.push(website)
+        localStorage.setItem("websites", JSON.stringify(web_sites))
         
         // display 
         display(web_sites)
@@ -42,8 +54,16 @@ function pushClassOnInput(flag) {
 
 }
 
+function deleteWebsite(index) {
+    console.log("delete website")
+    web_sites.splice(index, 1)
+    localStorage.setItem("websites", JSON.stringify(web_sites))
+    display(web_sites)
+}
+
 function display(web_sites) {
-    console.log("display web_sites")
+    console.log(web_sites)
+    table_body.innerHTML = ""
     for(var i=0;i<web_sites.length;i++) {
         table_body.innerHTML += `
         <tr>
@@ -54,10 +74,23 @@ function display(web_sites) {
                         <i class="fa-solid fa-eye pe-2"></i>
                     </a>
                 </td>
-                <td><i class="fa-solid fa-trash"></i></td>
+                <td>
+                <a onClick="deleteWebsite(${i})">
+                      <i class="fa-solid fa-trash"></i>                
+                </a>
+                </td>
         </tr>`
     }
-  
+}
+
+function search(input) {
+    searchWebsites = []
+    for(var i=0;i<web_sites.length;i++) {
+        if(JSON.stringify(web_sites[i].web_site_name).toLowerCase().includes(input.value.toLowerCase())) {
+            searchWebsites.push(web_sites[i])
+        }
+    }
+    display(searchWebsites)
 }
 
 site_url.addEventListener("keyup", function() {

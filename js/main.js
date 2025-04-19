@@ -9,9 +9,8 @@ var web_sites = []
 function submit() {
     // push the website into the the array
     if(validateUrl(site_url.value)) {
-        console.log("inside if")
+        console.log("the form is valid")
         var website = {
-            'index': 0,
             'web_site_name': site_name.value,
             'url': site_url.value
         }
@@ -19,7 +18,7 @@ function submit() {
         web_sites.push(website)
         
         // display 
-        display(website)
+        display(web_sites)
     }
     return 
    
@@ -43,20 +42,22 @@ function pushClassOnInput(flag) {
 
 }
 
-function display(website) {
-    console.log("display")
-    table_body.innerHTML += `
+function display(web_sites) {
+    console.log("display web_sites")
+    for(var i=0;i<web_sites.length;i++) {
+        table_body.innerHTML += `
         <tr>
-                <th scope="row">${website.index}</th>
-                <td>${website.web_site_name}</td>
+                <th scope="row">${i + 1}</th>
+                <td>${web_sites[i].web_site_name}</td>
                 <td>  
-                    <a href="${website.url}">
+                    <a href="${web_sites[i].url}">
                         <i class="fa-solid fa-eye pe-2"></i>
-                    </a></td>
-                <td>@mdo</td>
-        </tr>        
-    
-    `
+                    </a>
+                </td>
+                <td><i class="fa-solid fa-trash"></i></td>
+        </tr>`
+    }
+  
 }
 
 site_url.addEventListener("keyup", function() {
